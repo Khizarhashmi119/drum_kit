@@ -1,0 +1,58 @@
+var btn = document.querySelectorAll(".drum");
+
+for (var count = 0; count < btn.length; count++) {
+  btn[count].addEventListener("click", function() {
+    var btnInnerHtml = this.innerHTML;
+    sounds(btnInnerHtml);
+    buttonAnimation(btnInnerHtml);
+  });
+}
+
+document.addEventListener("keydown", function(event) {
+  var keyPressed = event.key;
+  sounds(keyPressed);
+  buttonAnimation(keyPressed);
+});
+
+function sounds(character) {
+  switch (character) {
+    case "w":
+      var tom1 = new Audio("sounds/tom-1.mp3");
+      tom1.play();
+      break;
+    case "a":
+      var tom2 = new Audio("sounds/tom-2.mp3");
+      tom2.play();
+      break;
+    case "s":
+      var tom3 = new Audio("sounds/tom-3.mp3");
+      tom3.play();
+      break;
+    case "d":
+      var tom4 = new Audio("sounds/tom-4.mp3");
+      tom4.play();
+      break;
+    case "j":
+      var snare = new Audio("sounds/snare.mp3");
+      snare.play();
+      break;
+    case "k":
+      var crash = new Audio("sounds/crash.mp3");
+      crash.play();
+      break;
+    case "l":
+      var kickBass = new Audio("sounds/kick-bass.mp3");
+      kickBass.play();
+      break;
+    default:
+      console.log(character);
+  }
+}
+
+function buttonAnimation(currentKey) {
+  var activeBtn = document.querySelector("." + currentKey);
+  activeBtn.classList.toggle("pressed");
+  setTimeout(function() {
+    activeBtn.classList.toggle("pressed");
+  }, 100);
+}
